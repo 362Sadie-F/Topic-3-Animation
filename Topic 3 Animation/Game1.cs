@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -13,7 +14,15 @@ namespace Topic_3_Animation
         Texture2D tribbleOTexture;
         Texture2D tribbleGTexture;
         Texture2D tribbleCTexture;
-        Rectangle tribbleBrown;
+        Rectangle tribbleBrownRec;
+        Rectangle tribbleOrangeRec;
+        Rectangle tribbleGreyRec;
+        Rectangle tribbleCreamRec;
+        SoundEffect tribbleCoo;
+        Vector2 brownTribbleSpeed;
+        Vector2 orangeTribbleSpeed;
+        Vector2 greyTribbleSpeed;
+        Vector2 creamTribbleSpeed;
 
 
         public Game1()
@@ -30,7 +39,15 @@ namespace Topic_3_Animation
             _graphics.PreferredBackBufferHeight = window.Height;
             _graphics.ApplyChanges();
 
-            tribbleBrown = new Rectangle(300, 10, 100, 100);
+            tribbleBrownRec = new Rectangle(300, 10, 150, 150);
+            tribbleOrangeRec = new Rectangle(350, 30, 150, 150);
+            tribbleGreyRec = new Rectangle(250, 50, 150, 150);
+            tribbleCreamRec = new Rectangle(400, 80, 150, 150);
+            brownTribbleSpeed = new Vector2(2, 2);
+            orangeTribbleSpeed = new Vector2(3, 1);
+           // greyTribbleSpeed = new Vector2(2, 1);
+          //  creamTribbleSpeed = new Vector2(3, 1);
+
 
             base.Initialize();
         }
@@ -42,7 +59,7 @@ namespace Topic_3_Animation
             tribbleOTexture = Content.Load<Texture2D>("tribbleOrange");
             tribbleGTexture = Content.Load<Texture2D>("tribbleGrey");
             tribbleCTexture = Content.Load<Texture2D>("tribbleCream");
-
+            tribbleCoo = Content.Load<SoundEffect>("tribble_coo");
         }
 
         protected override void Update(GameTime gameTime)
@@ -50,7 +67,64 @@ namespace Topic_3_Animation
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            
+           tribbleBrownRec.X += (int) brownTribbleSpeed.X;
+           if (tribbleBrownRec.Right > window.Width || tribbleBrownRec.Left < 0)
+           {
+                brownTribbleSpeed.X *= -1;
+                tribbleCoo.Play();
+           }
+
+            if (tribbleBrownRec.Bottom > window.Height || tribbleBrownRec.Top < 0)
+            {
+                brownTribbleSpeed.Y *= -1;
+                tribbleCoo.Play();
+            }
+           tribbleBrownRec.Y += (int) brownTribbleSpeed.Y;
+
+
+            tribbleOrangeRec.X += (int) orangeTribbleSpeed.X;
+            if (tribbleOrangeRec.Right > window.Width || tribbleOrangeRec.Left < 0)
+            {
+                orangeTribbleSpeed.X *= -1;
+                tribbleCoo.Play();
+            }
+
+            if (tribbleOrangeRec.Bottom > window.Height || tribbleOrangeRec.Top < 0)
+            {
+                orangeTribbleSpeed.Y *= -1;
+                tribbleCoo.Play();
+            }
+            tribbleOrangeRec.Y += (int) orangeTribbleSpeed.Y;
+
+
+            //tribbleGreyRec.X += (int) greyTribbleSpeed.X;
+            //if (tribbleGreyRec.Right > window.Width || tribbleGreyRec.Left < 0)
+            //{
+            //    greyTribbleSpeed.X *= -1;
+            //    tribbleCoo.Play();
+            //}
+
+            //if (tribbleGreyRec.Bottom > window.Height || tribbleGreyRec.Top < 0)
+            //{
+            //    greyTribbleSpeed.Y *= -1;
+            //    tribbleCoo.Play();
+            //}
+            //tribbleGreyRec.Y += (int) greyTribbleSpeed.Y;
+
+
+            //tribbleCreamRec.X += (int) creamTribbleSpeed.X;
+            //if (tribbleCreamRec.Right > window.Width || tribbleCreamRec.Left < 0)
+            //{
+            //    creamTribbleSpeed.X *= -1;
+            //    tribbleCoo.Play();
+            //}
+
+            //if (tribbleCreamRec.Bottom > window.Height || tribbleCreamRec.Top < 0)
+            //{
+            //    greyTribbleSpeed.Y *= -1;
+            //    tribbleCoo.Play();
+            //}
+            //tribbleCreamRec.Y += (int) creamTribbleSpeed.Y;
 
             base.Update(gameTime);
         }
@@ -60,7 +134,10 @@ namespace Topic_3_Animation
             GraphicsDevice.Clear(Color.LightSteelBlue);
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(tribbleBTexture, tribbleBrown, Color.White);
+            _spriteBatch.Draw(tribbleBTexture, tribbleBrownRec, Color.White);
+            _spriteBatch.Draw(tribbleOTexture, tribbleOrangeRec, Color.White);
+            //_spriteBatch.Draw(tribbleGTexture, tribbleGreyRec, Color.White);
+            //_spriteBatch.Draw(tribbleCTexture, tribbleCreamRec, Color.White);
 
             _spriteBatch.End();
 
