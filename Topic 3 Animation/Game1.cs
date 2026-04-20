@@ -42,11 +42,11 @@ namespace Topic_3_Animation
             tribbleBrownRec = new Rectangle(300, 10, 150, 150);
             tribbleOrangeRec = new Rectangle(350, 30, 150, 150);
             tribbleGreyRec = new Rectangle(250, 50, 150, 150);
-            tribbleCreamRec = new Rectangle(400, 80, 150, 150);
-            brownTribbleSpeed = new Vector2(2, 2);
-            orangeTribbleSpeed = new Vector2(3, 1);
-           // greyTribbleSpeed = new Vector2(2, 1);
-          //  creamTribbleSpeed = new Vector2(3, 1);
+            tribbleCreamRec = new Rectangle(580, 0, 150, 150);
+            brownTribbleSpeed = new Vector2(4, 5); //bounce
+            orangeTribbleSpeed = new Vector2(3, 3);
+            greyTribbleSpeed = new Vector2(3, 4); //horizontal
+            creamTribbleSpeed = new Vector2(2, 2);
 
 
             base.Initialize();
@@ -82,62 +82,64 @@ namespace Topic_3_Animation
            tribbleBrownRec.Y += (int) brownTribbleSpeed.Y;
 
 
-            tribbleOrangeRec.X += (int) orangeTribbleSpeed.X;
-            if (tribbleOrangeRec.Right > window.Width || tribbleOrangeRec.Left < 0)
-            {
-                orangeTribbleSpeed.X *= -1;
-                tribbleCoo.Play();
-            }
+            //tribbleOrangeRec.X += (int) orangeTribbleSpeed.X;
+            //if (tribbleOrangeRec.Right > window.Width || tribbleOrangeRec.Left < 0)
+            //{
+            //    orangeTribbleSpeed.X *= -1;
+            //    tribbleCoo.Play();
+                
+            //}
 
             if (tribbleOrangeRec.Bottom > window.Height || tribbleOrangeRec.Top < 0)
             {
                 orangeTribbleSpeed.Y *= -1;
                 tribbleCoo.Play();
+
             }
-            tribbleOrangeRec.Y += (int) orangeTribbleSpeed.Y;
+            tribbleOrangeRec.Y += (int)orangeTribbleSpeed.Y;
 
 
-            //tribbleGreyRec.X += (int) greyTribbleSpeed.X;
-            //if (tribbleGreyRec.Right > window.Width || tribbleGreyRec.Left < 0)
-            //{
-            //    greyTribbleSpeed.X *= -1;
-            //    tribbleCoo.Play();
-            //}
+            tribbleGreyRec.X += (int)greyTribbleSpeed.X;
+            if (tribbleGreyRec.Right > window.Width || tribbleGreyRec.Left < 0)
+            {
+                greyTribbleSpeed.X *= -1;
+                tribbleCoo.Play();
+            }
 
             //if (tribbleGreyRec.Bottom > window.Height || tribbleGreyRec.Top < 0)
             //{
             //    greyTribbleSpeed.Y *= -1;
             //    tribbleCoo.Play();
             //}
-            //tribbleGreyRec.Y += (int) greyTribbleSpeed.Y;
+            //tribbleGreyRec.Y += (int)greyTribbleSpeed.Y;
 
 
-            //tribbleCreamRec.X += (int) creamTribbleSpeed.X;
-            //if (tribbleCreamRec.Right > window.Width || tribbleCreamRec.Left < 0)
-            //{
-            //    creamTribbleSpeed.X *= -1;
-            //    tribbleCoo.Play();
-            //}
+            tribbleCreamRec.X += (int)creamTribbleSpeed.X;
+            if (tribbleCreamRec.Right > window.Width || tribbleCreamRec.Left < 0)
+            {
+                creamTribbleSpeed.X *= -1;
+                tribbleCoo.Play();
+            }
 
-            //if (tribbleCreamRec.Bottom > window.Height || tribbleCreamRec.Top < 0)
-            //{
-            //    greyTribbleSpeed.Y *= -1;
-            //    tribbleCoo.Play();
-            //}
-            //tribbleCreamRec.Y += (int) creamTribbleSpeed.Y;
+            if (tribbleCreamRec.Bottom > window.Height || tribbleCreamRec.Top < 0)
+            {
+                greyTribbleSpeed.Y *= -1;
+                tribbleCoo.Play();
+            }
+            tribbleCreamRec.Y += (int)creamTribbleSpeed.Y;
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.LightSteelBlue);
+            GraphicsDevice.Clear(Color.DarkKhaki);
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(tribbleBTexture, tribbleBrownRec, Color.White);
             _spriteBatch.Draw(tribbleOTexture, tribbleOrangeRec, Color.White);
-            //_spriteBatch.Draw(tribbleGTexture, tribbleGreyRec, Color.White);
-            //_spriteBatch.Draw(tribbleCTexture, tribbleCreamRec, Color.White);
+            _spriteBatch.Draw(tribbleGTexture, tribbleGreyRec, Color.White);
+            _spriteBatch.Draw(tribbleCTexture, tribbleCreamRec, Color.White);
 
             _spriteBatch.End();
 
