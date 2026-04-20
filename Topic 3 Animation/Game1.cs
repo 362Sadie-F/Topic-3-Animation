@@ -46,7 +46,7 @@ namespace Topic_3_Animation
             brownTribbleSpeed = new Vector2(4, 5); //bounce
             orangeTribbleSpeed = new Vector2(3, 3);
             greyTribbleSpeed = new Vector2(3, 4); //horizontal
-            creamTribbleSpeed = new Vector2(2, 2);
+            creamTribbleSpeed = new Vector2(-2, 2);
 
 
             base.Initialize();
@@ -123,7 +123,7 @@ namespace Topic_3_Animation
 
             if (tribbleCreamRec.Bottom > window.Height || tribbleCreamRec.Top < 0)
             {
-                greyTribbleSpeed.Y *= -1;
+                creamTribbleSpeed.Y *= -1;
                 tribbleCoo.Play();
             }
             tribbleCreamRec.Y += (int)creamTribbleSpeed.Y;
