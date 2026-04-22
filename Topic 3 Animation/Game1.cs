@@ -42,11 +42,11 @@ namespace Topic_3_Animation
             tribbleBrownRec = new Rectangle(300, 10, 150, 150);
             tribbleOrangeRec = new Rectangle(350, 30, 150, 150);
             tribbleGreyRec = new Rectangle(250, 50, 150, 150);
-            tribbleCreamRec = new Rectangle(580, 0, 150, 150);
+            tribbleCreamRec = new Rectangle(5, 0, 150, 150);
             brownTribbleSpeed = new Vector2(4, 5); //bounce
-            orangeTribbleSpeed = new Vector2(3, 3);
+            orangeTribbleSpeed = new Vector2(3, 3); //vertical
             greyTribbleSpeed = new Vector2(3, 4); //horizontal
-            creamTribbleSpeed = new Vector2(-2, 2);
+            creamTribbleSpeed = new Vector2(-2/2, 2);
 
 
             base.Initialize();
@@ -114,7 +114,7 @@ namespace Topic_3_Animation
             //tribbleGreyRec.Y += (int)greyTribbleSpeed.Y;
 
 
-            tribbleCreamRec.X += (int)creamTribbleSpeed.X;
+            tribbleCreamRec.X += (int)creamTribbleSpeed.X*2;
             if (tribbleCreamRec.Right > window.Width || tribbleCreamRec.Left < 0)
             {
                 creamTribbleSpeed.X *= -1;
@@ -126,7 +126,7 @@ namespace Topic_3_Animation
                 creamTribbleSpeed.Y *= -1;
                 tribbleCoo.Play();
             }
-            tribbleCreamRec.Y += (int)creamTribbleSpeed.Y;
+            tribbleCreamRec.Y += (int)creamTribbleSpeed.Y*2;
 
             base.Update(gameTime);
         }
@@ -136,9 +136,9 @@ namespace Topic_3_Animation
             GraphicsDevice.Clear(Color.DarkKhaki);
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(tribbleBTexture, tribbleBrownRec, Color.White);
-            _spriteBatch.Draw(tribbleOTexture, tribbleOrangeRec, Color.White);
-            _spriteBatch.Draw(tribbleGTexture, tribbleGreyRec, Color.White);
+            _spriteBatch.Draw(tribbleBTexture, tribbleBrownRec, Color.BurlyWood);
+            _spriteBatch.Draw(tribbleOTexture, tribbleOrangeRec, Color.Goldenrod);
+            _spriteBatch.Draw(tribbleGTexture, tribbleGreyRec, Color.MonoGameOrange);
             _spriteBatch.Draw(tribbleCTexture, tribbleCreamRec, Color.White);
 
             _spriteBatch.End();
