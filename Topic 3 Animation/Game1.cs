@@ -23,6 +23,7 @@ namespace Topic_3_Animation
         Vector2 orangeTribbleSpeed;
         Vector2 greyTribbleSpeed;
         Vector2 creamTribbleSpeed;
+        Color creamTribbleColor = Color.MediumAquamarine;
 
 
         public Game1()
@@ -46,7 +47,7 @@ namespace Topic_3_Animation
             brownTribbleSpeed = new Vector2(4, 5); //bounce
             orangeTribbleSpeed = new Vector2(3, 3); //vertical
             greyTribbleSpeed = new Vector2(3, 4); //horizontal
-            creamTribbleSpeed = new Vector2(-2/2, 2); //attempting diagonal
+            creamTribbleSpeed = new Vector2(-4/4, 4); //attempting diagonal
 
 
             base.Initialize();
@@ -72,12 +73,14 @@ namespace Topic_3_Animation
            {
                 brownTribbleSpeed.X *= -1;
                 tribbleCoo.Play();
+                
            }
 
             if (tribbleBrownRec.Bottom > window.Height || tribbleBrownRec.Top < 0)
             {
                 brownTribbleSpeed.Y *= -1;
                 tribbleCoo.Play();
+                
             }
            tribbleBrownRec.Y += (int) brownTribbleSpeed.Y;
 
@@ -119,12 +122,14 @@ namespace Topic_3_Animation
             {
                 creamTribbleSpeed.X *= -1;
                 tribbleCoo.Play();
+                creamTribbleColor = Color.White;
             }
 
             if (tribbleCreamRec.Bottom > window.Height || tribbleCreamRec.Top < 0)
             {
                 creamTribbleSpeed.Y *= -1;
                 tribbleCoo.Play();
+                creamTribbleColor = Color.MediumAquamarine;
             }
             tribbleCreamRec.Y += (int)creamTribbleSpeed.Y*2;
 
@@ -139,7 +144,7 @@ namespace Topic_3_Animation
             _spriteBatch.Draw(tribbleBTexture, tribbleBrownRec, Color.BurlyWood);
             _spriteBatch.Draw(tribbleOTexture, tribbleOrangeRec, Color.Goldenrod);
             _spriteBatch.Draw(tribbleGTexture, tribbleGreyRec, Color.MonoGameOrange);
-            _spriteBatch.Draw(tribbleCTexture, tribbleCreamRec, Color.White);
+            _spriteBatch.Draw(tribbleCTexture, tribbleCreamRec, creamTribbleColor);
 
             _spriteBatch.End();
 
