@@ -26,11 +26,13 @@ namespace Topic_3_Animation
         Color creamTribbleColor = Color.MediumAquamarine;
         MouseState mouseState;
         Texture2D tribbleIntro;
+        Texture2D endGame;
 
         enum Screen
         {
-            Intro,
-            TribbleYard
+            Intro, //different screens/levels. Intro screen
+            TribbleYard, //tribble yard screen, different
+            GameEnd
         }
         Screen screen;
 
@@ -38,7 +40,7 @@ namespace Topic_3_Animation
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            IsMouseVisible = false;
         }
 
         protected override void Initialize()
@@ -57,7 +59,7 @@ namespace Topic_3_Animation
             greyTribbleSpeed = new Vector2(3, 4); //horizontal
             creamTribbleSpeed = new Vector2(-4/4, 4); //attempting diagonal
            
-            screen = Screen.Intro;
+            screen = Screen.Intro; //starting screen
 
             base.Initialize();
         }
@@ -71,6 +73,8 @@ namespace Topic_3_Animation
             tribbleCTexture = Content.Load<Texture2D>("tribbleCream");
             tribbleCoo = Content.Load<SoundEffect>("tribble_coo");
             tribbleIntro = Content.Load<Texture2D>("tribble_intro");
+            endGame = Content.Load<Texture2D>("EndScreen");
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -85,8 +89,15 @@ namespace Topic_3_Animation
                     screen = Screen.TribbleYard;
                 }
             }
+            if (screen == Screen.TribbleYard)
+            {
+                if (mouseState.RightButton == ButtonState.Pressed)
+                {
+                    screen = Screen.GameEnd;
+                }
+            }
 
-            else if (screen == Screen.TribbleYard)
+            if (screen == Screen.TribbleYard)
             {
                 tribbleBrownRec.X += (int)brownTribbleSpeed.X;
                 if (tribbleBrownRec.Right > window.Width || tribbleBrownRec.Left < 0)
@@ -174,6 +185,11 @@ namespace Topic_3_Animation
                 _spriteBatch.Draw(tribbleOTexture, tribbleOrangeRec, Color.Goldenrod);
                 _spriteBatch.Draw(tribbleGTexture, tribbleGreyRec, Color.MonoGameOrange);
                 _spriteBatch.Draw(tribbleCTexture, tribbleCreamRec, creamTribbleColor);
+            }
+
+            if (screen == Screen.GameEnd)
+            {
+                _spriteBatch.Draw(endGame, new Rectangle (0, 0, 800, 600), Color.White);
             }
             _spriteBatch.End();
 
