@@ -164,7 +164,7 @@ namespace Topic_3_Animation
 
             if (screen == Screen.Intro)
             {
-                _spriteBatch.Draw(tribbleIntro, new Rectangle(0, 0, 800, 500), Color.White);
+                _spriteBatch.Draw(tribbleIntro, new Rectangle(0, 0, 800, 600), Color.White);
             }
 
             else if (screen == Screen.TribbleYard)
