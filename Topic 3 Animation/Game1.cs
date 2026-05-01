@@ -27,6 +27,7 @@ namespace Topic_3_Animation
         MouseState mouseState;
         Texture2D tribbleIntro;
         Texture2D endGame;
+        SpriteFont instructions;
 
         enum Screen
         {
@@ -74,7 +75,7 @@ namespace Topic_3_Animation
             tribbleCoo = Content.Load<SoundEffect>("tribble_coo");
             tribbleIntro = Content.Load<Texture2D>("tribble_intro");
             endGame = Content.Load<Texture2D>("EndScreen");
-
+            instructions = Content.Load<SpriteFont>("InstructionFont");
         }
 
         protected override void Update(GameTime gameTime)
@@ -176,6 +177,7 @@ namespace Topic_3_Animation
             if (screen == Screen.Intro)
             {
                 _spriteBatch.Draw(tribbleIntro, new Rectangle(0, 0, 800, 600), Color.White);
+                _spriteBatch.DrawString(instructions, "Left Click mouse to proceed", new Rectangle(600, 200, 25, 25), Color.Black);
             }
 
             else if (screen == Screen.TribbleYard)
